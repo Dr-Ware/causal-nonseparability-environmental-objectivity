@@ -1,0 +1,23 @@
+{
+  "seed": 20260812,
+  "python": "3.12.9",
+  "numpy": "1.26.4",
+  "scipy": "1.13.1",
+  "gate_grid_points": 51,
+  "max_gate_formula_error": 2.220446049250313e-16,
+  "max_gate_coherent_minus_best_abs": 2.220446049250313e-16,
+  "finite_shot_settings": 99,
+  "shots_per_label": 8192,
+  "interval_method": "Bonferroni simultaneous Clopper-Pearson intervals for p0 and p1, propagated through |p0-p1|",
+  "interval_coverage": 1.0,
+  "noncoverage_count": 0,
+  "mean_bias": 0.00019958237718973516,
+  "max_abs_bias": 0.010896687340141042,
+  "mean_abs_error": 0.002457816104026167,
+  "max_abs_error": 0.010896687340141042,
+  "finite_shot_scope": "Ideal projective sampling only; excludes gate error, decoherence, readout bias, crosstalk, compilation overhead, and calibration drift.",
+  "gate_level_validation_v4.py_sha256": "2e8e2b8445d33f9e1912b60a1b9b9893baab162d1f88ad7b1a7aee6364ae61b8",
+  "v4_gate_level_validation.csv_sha256": "77c8050d8969c467ba0cb7e5e114db40ac5fc19297011f19c57fa1cc7950c02e",
+  "v4_finite_shot_validation.csv_sha256": "633f39418d7f10b262dd2348b56d80ddfe47bbdca75d6152d9d8806c4c0a2f31",
+  "v4_interval_noncoverage.csv_sha256": "f033bf95bfa1f1b01eb5e935045c71a6769daa75daae4c17164bf47afed93046"
+}

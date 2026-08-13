@@ -1,0 +1,1122 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Causal Nonseparability and Environmental Objectivity},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{\textbf{Causal Nonseparability and Environmental Objectivity}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\emph{Independence, Control-Assisted Records, and Quantum-Switch
+Benchmarks}
+
+\textbf{Scott Muniz}
+
+Dr. Ware Technology Services \textbar{} scott@drware.com
+
+\emph{Research Article \textbar{} Version 5 \textbar{} Final
+manuscript-level validation update \textbar{} August 2026}
+
+\section{Popular Summary}\label{popular-summary}
+
+The environment can act like a witness: many separate pieces of it may
+carry the same information about a quantum system. Quantum Darwinism
+explains how such repeated records support an objective classical
+description. A different line of research asks what happens when a
+quantum system controls whether operation A occurs before B or B before
+A. We connect these subjects without assuming that either one causes the
+other. Objective records and indefinite causal order are independent
+properties. The order-control system can contain extra information, but
+only when it is measured together with an environmental fragment, and
+the extra information obeys a strict budget. Ignoring the control
+removes the coherence-dependent contribution. The results separate
+redundant environmental records, joint measurements of the environment
+and order control, and independent certification of causal structure,
+while providing a four-qubit protocol with testable predictions.
+
+\section{Abstract}\label{abstract}
+
+Environmental objectivity and indefinite causal order concern distinct
+operational structures: redundant pointer information in environmental
+fragments and the convex causal structure of a process. We prove their
+logical independence in a composite class containing fixed-order record
+circuits and the quantum switch. We then establish exact equal-prior
+Helstrom neutrality for a binary record model with arbitrary mismatch
+and unequal interaction strengths: coherent order adds two null
+directions to the conditional-difference spectrum without changing its
+nonzero singular values. This exact no-advantage result coexists with a
+resource-matched joint-access Holevo advantage of 0.083977 bit. For a
+classical pointer label Λ, order control T, and fragment F, we derive a
+nonnegative access decomposition separating fragment information,
+classical branch-label information, and coherence-sensitive information.
+In irreducibly coupled controlled-order dynamics, exact unconditional
+pointer preservation is equivalent to preservation in each orthogonal
+branch. An exact postselection identity and probability-weighted bounds
+are controlled by I(Λ:T\textbar F). Many-fragment calculations, local
+spectrum-broadcast diagnostics, collision-noise surfaces, exact
+gate-level statevector simulation, reduced-normal-form checks, and
+finite-shot ideal sampling delimit the capability. Finally,
+deterministic local record augmentation of a causally nonseparable
+process preserves causal nonseparability, and every witness for the base
+process pulls back through the discard map to a witness for the
+extension. The resource is therefore bounded, task dependent, and access
+dependent rather than a universal enhancement of objectivity.
+
+\section{I. Introduction}\label{i.-introduction}
+
+Quantum Darwinism describes operational objectivity through redundant
+environmental records of a system pointer {[}1-8{]}. Process-matrix and
+higher-order-operation frameworks instead classify transformations and
+processes that cannot be reduced to a definite or probabilistic causal
+order {[}9-13,19{]}. These frameworks answer different questions.
+Objectivity asks which information is available in multiple disjoint
+fragments. Causal nonseparability asks whether the higher-order process
+connecting local laboratories lies outside the causally separable cone.
+
+This work establishes a disciplined relation between the two frameworks.
+Neither structure implies the other. When the same interactions generate
+records and participate in coherently controlled orders, branchwise
+pointer compatibility controls deterministic preservation, whereas
+access to the control supplies a bounded information resource. The
+resource is task dependent: it can increase joint Holevo information,
+leave equal-prior minimum-error discrimination exactly unchanged, and
+fail to improve environmental redundancy.
+
+Why this matters now. Quantum-switch experiments and certification
+methods have advanced rapidly {[}15,21-23{]}, while recent theoretical
+and experimental work has sharpened the conditions for Quantum
+Darwinism, strong objectivity, and spectrum-broadcast structure
+{[}17,18,20,24{]}. A unified operational treatment is needed to prevent
+information gain, redundant record formation, and causal certification
+from being treated as interchangeable. The present framework supplies
+that separation and a small-register route for testing it.
+
+The principal PRX Quantum case is an exceptional connection between
+environmental objectivity and indefinite causal order. The connection is
+not a claim that indefinite order universally improves objectivity.
+Rather, it identifies exactly which conclusions survive when access is
+restricted, when outcomes are postselected, and when causal structure is
+certified independently.
+
+The main contributions are: (i) a logical-independence theorem; (ii) an
+exact equal-prior Helstrom-neutrality theorem; (iii) an exact
+quantum-control access decomposition; (iv) branchwise preservation
+theorems; (v) a universal postselection information budget; (vi)
+many-fragment, noise, and local spectrum-broadcast diagnostics; (vii) a
+four-qubit validation protocol; and (viii) an inherited causal-witness
+theorem for deterministic local record extensions.
+
+Scope is deliberately bounded. We do not claim an advantage over the
+full causally separable process cone, a universal enhancement of
+objectivity, a global distance-to-spectrum-broadcast theorem, or
+physical-device validation.
+
+\textbf{Table I. Theorem roadmap and logical architecture.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Layer}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Question}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Core result}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Location}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Independence & Do objectivity and causal nonseparability imply one
+another? & No; all four logical sectors are constructively populated. &
+Theorem 1 \\
+Decision task & Does coherent order improve equal-prior binary
+discrimination? & No in the declared binary model; the trace norm is
+exactly unchanged. & Sec. VI \\
+Access and preservation & Where can extra information reside, and when
+is the pointer preserved? & Nonnegative access decomposition and
+branchwise preservation criteria. & Theorems 2-4 \\
+Operational limits & Can measurement or postselection create
+unrestricted record gain? & No; average and selected gains obey
+probability-weighted budgets. & Theorems 5-6 \\
+Certification and test & Does record augmentation retain causal
+certification? & Yes under deterministic local recovery; the witness
+pulls back. & Theorem 7 and Sec. IX \\
+\end{longtable}
+
+\section{II. Operational setting and
+notation}\label{ii.-operational-setting-and-notation}
+
+\subsection{A. Global assumptions}\label{a.-global-assumptions}
+
+All Hilbert spaces are finite dimensional. Logarithms are base two, so
+information quantities are measured in bits. The trace norm is
+\textbar\textbar X\textbar\textbar₁=Tr√(X†X). Unless otherwise stated,
+the binary decision problem uses equal priors. Classical registers are
+represented by orthogonal basis states, and conditional mutual
+information is I(A:B\textbar C)=S(AC)+S(BC)-S(C)-S(ABC).
+
+\textbf{Table II. Principal notation and conventions.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Symbol}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Meaning}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Λ & Classical pointer label with prior qλ \\
+T & Quantum order-control system \\
+F & Accessible environmental fragment \\
+E₁,E₂ & Record subsystems written by the two local interactions \\
+U\_A,U\_B & Record-generating local unitaries \\
+Qλ & Pointer-sector projector \\
+D\_T & Complete dephasing of T in the order-branch basis \\
+Y & Classical outcome register of an instrument on T \\
+W\_sw,W\_ext & Base switch process and record-augmented process \\
+R,R* & Deterministic local recovery/discard map and its Hilbert-Schmidt
+adjoint \\
+S\_sw,S\_ext & Base causal witness and its pulled-back extension \\
+\end{longtable}
+
+\subsection{B. Pointer labels, fragments, and
+objectivity}\label{b.-pointer-labels-fragments-and-objectivity}
+
+Let Λ be a classical pointer label with prior qλ and conditional states
+ρ\_\{TF\textbar λ\}. The associated classical-quantum state is
+
+ρ\_\{ΛTF\} = Σλ qλ \textbar λ\textgreater\textless λ\textbar{} ⊗
+ρ\_\{TF\textbar λ\}. (1)
+
+For a fragment F, I(Λ:F) equals the Holevo information of the
+conditional ensemble. Operational redundancy at deficit δ requires many
+disjoint fragments to carry at least (1-δ)H(Λ). Ordinary redundancy is
+not identified with strong Quantum Darwinism or spectrum-broadcast
+structure without their additional conditions; in particular, strong
+Quantum Darwinism and strong independence provide conditions connected
+to spectrum-broadcast structure {[}20{]}.
+
+\subsection{C. Causal separability and composite process
+class}\label{c.-causal-separability-and-composite-process-class}
+
+For the tripartite switch setting with a final party and no final
+output, a causally separable process admits a convex decomposition
+
+W\_sep = q W\^{}(A≺B≺C) + (1-q) W\^{}(B≺A≺C). (2)
+
+A causal witness is nonnegative on every causally separable process and
+negative on at least one causally nonseparable process {[}10-12{]}.
+Record quality and causal certification are evaluated separately.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Definition 1. Composite record-process class.\\
+}Let C\_rec contain (a) fixed-order processes with deterministic local
+record channels, (b) the unaltered quantum switch without appended
+records, and (c) record-augmented switch processes. The class is closed
+under adjoining deterministic local record channels and under
+deterministic local discard of those records. The operations preserve
+the validity constraints of the underlying process space.\strut
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\section{III. Independence and control-access
+decomposition}\label{iii.-independence-and-control-access-decomposition}
+
+\subsection{Theorem 1. Logical
+independence}\label{theorem-1.-logical-independence}
+
+Within C\_rec, environmental objectivity is neither necessary nor
+sufficient for causal nonseparability.
+
+Proof. A fixed-order process with compatible repeated records is
+objective but causally separable. The unaltered causally nonseparable
+quantum switch, or a switch with blank or incompatible record channels,
+is nonobjective but causally nonseparable. A switch with
+common-pointer-preserving record channels can satisfy both properties. A
+fixed-order nonrecording process satisfies neither. The quantum switch
+is treated as a higher-order controlled-order process as introduced in
+Ref. {[}19{]}, and causal nonseparability is certified independently
+through the process framework {[}10-12,15{]}. These constructions
+populate all four sectors. □
+
+\textbf{Table III. Constructive population of the four logical sectors.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Environmental objectivity}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Causal nonseparability}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Construction}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Yes & No & Fixed order with compatible repeated records \\
+No & Yes & Unaltered switch or switch with blank/incompatible records \\
+Yes & Yes & Switch with common-pointer-preserving record channels \\
+No & No & Fixed-order nonrecording process \\
+\end{longtable}
+
+\subsection{Theorem 2. Nonnegative access
+decomposition}\label{theorem-2.-nonnegative-access-decomposition}
+
+Let D\_T completely dephase T in the order-branch basis. Define
+I\_F=I(Λ:F)\_ρ, I\_class=I(Λ:TF)\_\{D\_T(ρ)\}, and I\_coh=I(Λ:TF)\_ρ.
+Then
+
+I\_coh - I\_F = Δ\_coh + Δ\_label, Δ\_coh ≥ 0, Δ\_label ≥ 0, (3)
+
+where Δ\_coh=I\_coh-I\_class and Δ\_label=I\_class-I\_F.
+
+Proof. D\_T is a channel local to T. Data processing therefore gives
+I(Λ:TF)\_ρ ≥ I(Λ:TF)\_\{D\_T(ρ)\}, proving Δ\_coh≥0. Because D\_T acts
+only on T and F is disjoint, dephasing commutes with tracing out T;
+hence the ΛF marginal is unchanged. The chain rule applied to the
+dephased state gives
+
+I(Λ:TF)\_\{D\_T(ρ)\} = I(Λ:F)\_\{D\_T(ρ)\} +
+I(Λ:T\textbar F)\_\{D\_T(ρ)\}.
+
+The unchanged ΛF marginal implies I(Λ:F)\_\{D\_T(ρ)\}=I(Λ:F)\_ρ.
+Therefore
+
+Δ\_label = I(Λ:T\textbar F)\_\{D\_T(ρ)\} ≥ 0. (4)
+
+The split is defined relative to the declared branch-basis dephasing and
+access structure; it is not asserted to be a unique partial-information
+decomposition. □
+
+\section{IV. Controlled-order record
+dynamics}\label{iv.-controlled-order-record-dynamics}
+
+Let U\_A record the Z pointer into E₁ and U\_B record a θ-rotated
+pointer into E₂. The controlled-order unitary is
+
+U\_ord = \textbar0\textgreater\textless0\textbar\_T ⊗ U\_B U\_A +
+\textbar1\textgreater\textless1\textbar\_T ⊗ U\_A U\_B. (5)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Definition 2. Exact pointer preservation.\\
+}An operator V preserves the pointer projectors \{Qλ\} exactly when
+{[}V,Qλ{]}=0 for every λ. This operator-level condition is equivalent to
+block-diagonality in the pointer decomposition and prevents transitions
+between pointer sectors. For a state supported in one sector, it implies
+nondemolition preservation of the corresponding pointer value.\strut
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+\subsection{Theorem 3. Common-pointer
+sufficiency}\label{theorem-3.-common-pointer-sufficiency}
+
+If {[}U\_A,Qλ{]}={[}U\_B,Qλ{]}=0 for every pointer projector Qλ, then
+both definite orders, U\_ord, and every nonzero postselected operator
+Kφ=\textless φ\textbar U\_ord\textbar τ\textgreater{} preserve Qλ.
+Products and linear combinations of operators in the commutant remain in
+the commutant.
+
+\subsection{Theorem 4. Orthogonal-branch
+necessity}\label{theorem-4.-orthogonal-branch-necessity}
+
+For an initial control state τ\_T with branch weights
+p₀=\textless0\textbar τ\_T\textbar0\textgreater{} and
+p₁=\textless1\textbar τ\_T\textbar1\textgreater, exact unconditional
+operator-level preservation by U\_ord holds if and only if both order
+products preserve the pointer projector, because
+
+{[}U\_ord,I\_T⊗Qλ{]} = \textbar0\textgreater\textless0\textbar⊗{[}U\_B
+U\_A,Qλ{]} + \textbar1\textgreater\textless1\textbar⊗{[}U\_A U\_B,Qλ{]}.
+(6)
+
+The terms occupy orthogonal control blocks, so cross-order coherence
+cannot cancel operator-level leakage. For a projector Qλ, define the
+nonnegative Hilbert-Schmidt leakage
+Lλ(V)=\textbar\textbar(I-Qλ)VQλ\textbar\textbar₂². With initial control
+branch weights p₀ and p₁, tracing out T gives Lλ(U\_ord)=p₀Lλ(U\_B
+U\_A)+p₁Lλ(U\_A U\_B). Thus zero unconditional leakage with both weights
+nonzero is equivalent to zero leakage in each occupied branch. If one
+branch has zero weight, necessity applies only to the occupied branch.
+The same conclusion holds for any nonnegative leakage functional
+additive on orthogonal control blocks.
+
+\section{V. Postselection information
+budget}\label{v.-postselection-information-budget}
+
+Let an instrument \{M\_y\} on T store its accessible outcome in a
+classical register Y. The post-instrument state is ρ\_\{ΛFY\}=Σ\_y p\_y
+ρ\_\{ΛF\textbar y\}⊗\textbar y\textgreater\textless y\textbar, where
+p\_y\textgreater0 for every selected outcome retained in the formulas.
+Define χ\_y=I(Λ:F)\_\{ρ\textbar y\} and χ=I(Λ:F)\_ρ.
+
+\subsection{Theorem 5. Exact average
+identity}\label{theorem-5.-exact-average-identity}
+
+Σ\_y p\_y χ\_y - χ = I(Λ:Y\textbar F) - I(Λ:Y). (7)
+
+Proof. Because Y is classical, I(Λ:F\textbar Y)=Σ\_y p\_y
+I(Λ:F)\_\{ρ\textbar y\}=Σ\_y p\_yχ\_y. The two chain-rule expansions
+
+I(Λ:FY)=I(Λ:Y)+I(Λ:F\textbar Y)=I(Λ:F)+I(Λ:Y\textbar F)
+
+imply Eq. (7) after rearrangement. □
+
+\subsection{Theorem 6. Average and selected-outcome
+bounds}\label{theorem-6.-average-and-selected-outcome-bounds}
+
+Σ\_y p\_y(χ\_y-χ) ≤ I(Λ:T\textbar F), (8)
+
+p\_y(χ\_y-χ) ≤ I(Λ:T\textbar F) + (1-p\_y)χ. (9)
+
+Proof. The measurement channel T→Y and conditional data processing give
+I(Λ:Y\textbar F)≤I(Λ:T\textbar F). Since I(Λ:Y)≥0, Eq. (7) yields Eq.
+(8). For a chosen y, write the average deviation as
+p\_y(χ\_y-χ)+Σ\_\{z≠y\}p\_z(χ\_z-χ). Because χ\_z≥0, every complementary
+deviation is at least -χ, and hence Σ\_\{z≠y\}p\_z(χ\_z-χ)≥-(1-p\_y)χ.
+Combining this lower bound with Eq. (8) gives Eq. (9). Thus
+postselection redistributes fragment information; a favorable outcome
+must be reported with its probability and complementary outcomes. □
+
+\section{VI. Exact equal-prior decision
+neutrality}\label{vi.-exact-equal-prior-decision-neutrality}
+
+This section treats the exact binary decision task. For equal priors,
+let Δ\_AB=ρ\^{}\{AB\}\_\{E₂\textbar0\}-ρ\^{}\{AB\}\_\{E₂\textbar1\},
+Δ\_BA=ρ\^{}\{BA\}\_\{E₂\textbar0\}-ρ\^{}\{BA\}\_\{E₂\textbar1\}, and
+Δ\_coh=ρ\^{}\{coh\}\_\{TE₂\textbar0\}-ρ\^{}\{coh\}\_\{TE₂\textbar1\}.
+The fixed-order operators are 2×2 Hermitian matrices on E₂; the coherent
+operator is a 4×4 Hermitian matrix on T⊗E₂. We evaluate them in the
+ordered bases \{\textbar0\textgreater,\textbar1\textgreater\} and
+\{\textbar0\_T0\_E₂\textgreater,\textbar0\_T1\_E₂\textgreater,\textbar1\_T0\_E₂\textgreater,\textbar1\_T1\_E₂\textgreater\}.
+
+For the declared binary record model, the symbolic certificate
+constructs the physical-basis operators and verifies a unitary reduction
+to the following spectral normal forms. Let s=sin(α\_B/2)cosθ. There
+exist unitaries V\_AB, V\_BA, and V\_coh such that
+
+V\_AB Δ\_AB V\_AB† = diag(s,-s), V\_BA Δ\_BA V\_BA† = diag(s,-s),
+
+V\_coh Δ\_coh V\_coh† = diag(s,-s,0,0).
+
+These displayed matrices are the exact reduced normal forms, not assumed
+representatives. The archived symbolic calculation verifies coefficient
+by coefficient that p\_coh(λ)-λ²p\_AB(λ)=0 and p\_coh(λ)-λ²p\_BA(λ)=0
+under the trigonometric normalization identities. Consequently,
+
+p\_fix(λ)=det(λI-Δ\_AB)=det(λI-Δ\_BA)=λ²-sin²(α\_B/2)cos²θ. (10)
+
+The coherent matrix has rank two. Elementary block reduction or a
+symbolic determinant expansion yields
+
+p\_coh(λ)=det(λI-Δ\_coh)=λ²{[}λ²-sin²(α\_B/2)cos²θ{]}. (11)
+
+Thus Δ\_coh adds two null directions and has the same nonzero
+eigenvalues ±\textbar sin(α\_B/2)cosθ\textbar{} as either fixed order.
+The equality holds for arbitrary mismatch θ and arbitrary interaction
+strengths α\_A and α\_B within the model. The absence of α\_A reflects
+the fact that, for this marginal binary decision observable, the first
+record interaction changes the embedding but not the two nonzero
+singular values. Therefore
+
+\textbar\textbar Δ\_coh\textbar\textbar₁=\textbar\textbar Δ\_AB\textbar\textbar₁=\textbar\textbar Δ\_BA\textbar\textbar₁=2\textbar sin(α\_B/2)cosθ\textbar,
+(12)
+
+P\_H=1/2+1/4\textbar\textbar Δ\textbar\textbar₁=1/2+1/2\textbar sin(α\_B/2)cosθ\textbar.
+(13)
+
+This equality is not a generic statement that coherent order is useless.
+Holevo information depends on the spectra of the individual conditional
+states and their average, not only on the binary trace norm. Biased
+priors replace Δ by π₀ρ₀-π₁ρ₁, introducing a noncanceling common-state
+term; consequently the factorization in Eq. (11) need not hold. The
+result is therefore an exact, task-specific no-advantage theorem.
+
+\section{VII. Numerical and operational
+results}\label{vii.-numerical-and-operational-results}
+
+\subsection{A. Matched-family joint-access
+capability}\label{a.-matched-family-joint-access-capability}
+
+For fixed dimensions, initial states, one use of each operation, and
+comparison with the two fixed orders, the model reaches a joint
+control-fragment Holevo advantage of 0.0839771759 bit near θ=0.700108
+and full record strength. Discarding T removes the cross-order
+contribution and produces no fragment-only advantage over the
+corresponding fixed-order family.
+
+\textbf{Table IV. Verified benchmark claims carried into the main text.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Quantity}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coherent / joint-access result}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Matched fixed-order result}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Conclusion}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Benchmark & θ=0.7001079286; α=π; B-family/full-strength comparison &
+Same dimensions, states, operation uses, and record resources &
+Resource-matched family \\
+B-only fragment, fixed order & 0.477538 bit & AB and BA equal for this
+composition & Reference value \\
+Joint T+B fragments, 1-3 records & 0.557230 bit & 0.477538 bit &
+Advantage 0.079692 bit \\
+Joint T+all four B records & 0.561515 bit & 0.477538 bit & Advantage
+0.083977 bit \\
+Environment-only coherent access & No advantage over optimized
+fixed-order mixture & Control-inaccessible reduced state is the equal
+order mixture & No fragment-only gain \\
+Equal-prior Helstrom & P\_H=1/2+\textbar sin(α\_B/2)cosθ\textbar/2 &
+Same expression for AB and BA & Exact neutrality \\
+Numerical validation & Gate-level NumPy and Qiskit statevector checks;
+reduced-normal-form check; finite-shot ideal sampling & Analytic formula
+and matched fixed-order circuits & Computational validation; no
+physical-device measurements \\
+\end{longtable}
+
+Relation to communication-power results. Zhao et al. show that
+coherently controlled order can enhance one-shot classical-message
+transmission in their communication framework, while also identifying
+asymptotic limits relative to shared entanglement {[}22{]}. The present
+task is different: it concerns environmental record access and binary
+discrimination. Here coherent order increases joint Holevo information
+in a matched family but leaves equal-prior Helstrom performance exactly
+unchanged and does not improve fragment-only redundancy in the tested
+class. The results are complementary and support the conclusion that
+coherent-order advantages depend on the operational task, comparator,
+and accessible systems.
+
+\subsection{B. Many-fragment
+objectivity}\label{b.-many-fragment-objectivity}
+
+Complete subset enumeration through eight records and mismatch-dependent
+surfaces for N=2,4,6 show no coherent fragment-only redundancy advantage
+over the better fixed order under either mean-fragment or worst-fragment
+0.9-bit thresholds. Repeated perfect records form GHZ-type repetition
+encodings: proper nonempty subfragments lose the family coherence and
+saturate at the one-record ensemble. The complete-family
+control-assisted bonus remains bounded, so the bonus per record vanishes
+asymptotically.
+
+\textbf{Table V. Many-fragment conclusions. Numerical arrays remain in
+the reproducibility package.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Domain
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Mean-fragment result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Worst/global result
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Interpretation
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2,4,6,8 & Complete subset enumeration at five mismatch values & No
+coherent fragment-only improvement over best fixed order & No coherent
+fragment-only improvement over best fixed order \\
+8 at θ=0.7001079286 & Best fixed: mδ=3, Rδ≈2.67 & Best fixed: mδ=5,
+Rδ=1.6 & Coherent fragment-only never reaches 0.9 bit \\
+8, one-record mean & Best fixed 0.738769 bit & Coherent fragment-only
+0.498335 bit & Joint T+fragment mean 0.642540 bit \\
+8, full environment & Best fixed reaches 1 bit by size 5 & Coherent
+fragment-only 0.715579 bit & Joint T+all records 0.943735 bit; global
+decoder only \\
+\end{longtable}
+
+\subsection{C. Local spectrum-broadcast
+diagnostics}\label{c.-local-spectrum-broadcast-diagnostics}
+
+At the benchmark mismatch, coherent environment-only singleton records
+remain nonorthogonal and at a finite optimized trace distance from every
+ideal orthogonal qubit record pair. Conditional total correlations
+diagnose additional nonproduct structure. These finite diagnostics do
+not constitute a global minimum distance to the full
+spectrum-broadcast-state set.
+
+\subsection{D. Noise and phase
+structure}\label{d.-noise-and-phase-structure}
+
+Control dephasing removes the coherence-sensitive contribution. Partial
+strengths, reduced-state noise, and collision-level target and record
+noise leave positive joint-access regions but do not generate a
+fragment-only redundancy advantage in the declared tests. Robustness is
+regime specific and is not claimed for arbitrary channels.
+
+\section{VIII. Record-augmented causal
+certification}\label{viii.-record-augmented-causal-certification}
+
+Let P denote the valid finite-dimensional process-matrix space for the
+declared laboratory interfaces. For the base tripartite switch
+interface, the Hilbert spaces are ordered A\_I,A\_O,B\_I,B\_O,C\_I,
+Charlie has no output, normalized processes have trace 4, and causally
+separable processes decompose as W\_sep=W\^{}(A≺B≺C)+W\^{}(B≺A≺C), with
+positive semidefinite summands. The A≺B≺C summand satisfies the
+replacement-map constraints \_C W=\_\{B\_O C\}W and \_\{B\_I B\_O
+C\}W=\_\{A\_O B\_I B\_O C\}W; the opposite order exchanges A and B. Let
+W\_sw∈P be causally nonseparable. Let W\_ext append local record outputs
+E\_A,E\_B, and define R=D\_A⊗D\_B⊗id\_C, where D\_A and D\_B are
+completely positive deterministic local discard maps satisfying
+R(W\_ext)=W\_sw. Because deterministic local processing preserves each
+fixed-order cone and the normalization constraints, R maps the extended
+causally separable cone into the base causally separable cone.
+
+\subsection{Theorem 7. Ancilla stability and witness
+pullback}\label{theorem-7.-ancilla-stability-and-witness-pullback}
+
+W\_ext is causally nonseparable. If S\_sw is a causal witness for W\_sw,
+then
+
+S\_ext = R*(S\_sw) (14)
+
+is a causal witness for W\_ext. Here R* is the Hilbert-Schmidt
+(Heisenberg) adjoint, defined by
+
+Tr{[}R*(S)W{]}=Tr{[}S R(W){]} (15)
+
+for every compatible witness operator S and process W. Linearity of R
+implies linearity of R*. For every causally separable extended process
+W\_ext\^{}sep, closure under deterministic local operations gives
+R(W\_ext\^{}sep) causally separable; hence
+
+Tr{[}S\_ext W\_ext\^{}sep{]}=Tr{[}S\_sw R(W\_ext\^{}sep){]}≥0. (16)
+
+On the target extension,
+
+Tr(S\_ext W\_ext)=Tr{[}S\_sw R(W\_ext){]}=Tr(S\_sw W\_sw)\textless0.
+(17)
+
+Therefore S\_ext is nonnegative on the separable cone and negative on
+W\_ext. If W\_ext itself were causally separable, closure under R would
+make W\_sw causally separable, a contradiction. Thus the extended
+process remains causally nonseparable. □
+
+The causal certificate is independent of the pointer and record
+certificates. Common-pointer commutators and fragment-state diagnostics
+establish record behavior; the pulled-back witness establishes causal
+nonseparability.
+
+\section{IX. Four-qubit validation
+route}\label{ix.-four-qubit-validation-route}
+
+The minimal logical register is T,S,E₁,E₂, with global tensor ordering
+T⊗S⊗E₁⊗E₂. Exported physical-basis matrices use lexicographic
+computational-basis order \textbar t,s,e₁,e₂⟩, with t the most
+significant bit. Fixed AB, fixed BA, coherent-order, dephased-control,
+and postselected-control arms test equal-prior neutrality, biased-prior
+activation, coherence loss under dephasing, and the separation between
+joint T+E₂ recovery and E₂-only records. The evidence is organized into
+three distinct computational layers.
+
+The record-writing gates used in the circuit validation are
+
+U\_A(α\_A)=\textbar0⟩⟨0\textbar\_S⊗I\_\{E₁\}+\textbar1⟩⟨1\textbar\_S⊗R\_y(α\_A)\_\{E₁\},
+(18)
+
+U\_B(θ,α\_B)=R\_y(-θ)\_S{[}\textbar0⟩⟨0\textbar\_S⊗I\_\{E₂\}+\textbar1⟩⟨1\textbar\_S⊗R\_y(α\_B)\_\{E₂\}{]}R\_y(θ)\_S.
+(19)
+
+Identity operators on systems not displayed in Eqs. (18) and (19) are
+implicit. These definitions match the archived circuit construction used
+for the independent gate-level validation.
+
+\includegraphics[width=6.6in,height=2.66037in]{/mnt/data/Causal_Nonseparability_Environmental_Objectivity/figures/pandoc_media/media/image1.png}
+
+\textbf{Figure 1. Four-qubit circuit and access routes for coherent,
+dephased, discarded-control, and postselected comparisons. Table VI
+summarizes the accessible systems and target prediction for each arm.}
+
+\subsection{A. Circuit-level statevector
+validation}\label{a.-circuit-level-statevector-validation}
+
+The archived Qiskit implementation constructs U\_A(α\_A) as a controlled
+R\_y record operation from S to E₁ and U\_B(θ,α\_B) by rotating S
+through θ, applying the controlled R\_y record operation from S to E₂,
+and undoing the rotation. Fixed AB and BA circuits and the coherently
+controlled order act on T,S,E₁,E₂. The existing 51-point Qiskit
+statevector grid reports a maximum error of 3.33×10\^{}-16 relative to
+Eq. (13) and a maximum coherent-minus-best-fixed discrepancy of
+4.44×10\^{}-16.
+
+A new NumPy-only gate-level implementation independently constructs the
+same 16-dimensional circuit matrices, prepares both binary pointer
+labels, evolves all four qubits, explicitly traces to E₂ or T+E₂, and
+exports the physical-basis entries of Δ\_AB, Δ\_BA, and Δ\_coh. Across
+17 mismatch angles and three strength pairs, the maximum
+analytic-formula error and coherent-minus-best-fixed discrepancy are
+both 2.22×10\^{}-16. The Version 5 gate-level calculation targets the
+equal-prior decision-neutrality theorem. The Holevo benchmark,
+many-fragment results, collision-noise surfaces, and local
+spectrum-broadcast diagnostics remain supported by their dedicated
+archived calculations rather than by this gate-level validation dataset.
+
+\subsection{B. Reduced-normal-form
+verification}\label{b.-reduced-normal-form-verification}
+
+The separate reduced-normal-form script begins from the certified
+parameter s=sin(α\_B/2)cosθ and constructs valid conditional density
+matrices realizing diag(s,-s) and diag(s,-s,0,0). It verifies the
+eigenvalues, trace norms, and Helstrom formula on 51 settings. This
+calculation checks the consequences of the spectral theorem; it is not
+presented as an independent derivation of the four-qubit circuit
+spectrum.
+
+\subsection{C. Finite-shot ideal
+sampling}\label{c.-finite-shot-ideal-sampling}
+
+A finite-shot calculation samples the ideal projective probabilities at
+99 settings with 8,192 shots per pointer label and fixed seed 20260812.
+The mean bias is 0.000200, the mean absolute error is 0.002458, and the
+maximum absolute error is 0.010897. To avoid the boundary undercoverage
+of the earlier plug-in bootstrap, Version 4 uses Bonferroni simultaneous
+Clopper-Pearson intervals for the two binomial probabilities and
+propagates those intervals through \textbar p₀-p₁\textbar. All 99
+analytic targets lie inside the resulting intervals in this validation
+grid; this observed grid coverage is a diagnostic, not a universal
+coverage claim. The intervals are intentionally conservative, and 100\%
+observed inclusion on this finite grid should not be interpreted as
+exact nominal calibration.
+
+The finite-shot study isolates ideal sampling fluctuations. It does not
+model gate error, decoherence, readout bias, crosstalk, compilation
+overhead, or calibration drift.
+
+\subsection{D. Machine-readable
+artifacts}\label{d.-machine-readable-artifacts}
+
+The Version 5 validation set includes gate\_level\_validation\_v4.py,
+v4\_gate\_level\_validation.csv, v4\_finite\_shot\_validation.csv,
+v4\_interval\_noncoverage.csv, v4\_validation\_summary.json,
+v4\_checksums.sha256, and the updated validation figure. The gate-level
+CSV contains the physical-basis matrix entries, spectra, trace norms,
+and Helstrom values for all 51 circuit settings.
+
+\textbf{Table VII. Summary of numerical validation layers.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Validation layer}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Settings}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Primary quantity}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Maximum discrepancy / error}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Qiskit statevector & 51 & Helstrom formula & 3.33×10\^{}-16 \\
+NumPy gate level & 51 & Helstrom formula and physical-basis matrices &
+2.22×10\^{}-16 \\
+Reduced normal form & 51 & Spectral consequence & 0 in stored double
+precision \\
+Finite-shot ideal sampling & 99 & Helstrom estimate & 0.010897 maximum
+absolute error \\
+\end{longtable}
+
+\includegraphics[width=6.6in,height=2.49873in]{/mnt/data/Causal_Nonseparability_Environmental_Objectivity/figures/pandoc_media/media/image2.png}
+
+Figure 2. Gate-level and finite-shot validation. Curves show the
+analytic prediction; representative error bars are simultaneous
+Clopper-Pearson intervals. The right panel displays finite-shot bias
+across 99 ideal-sampling settings. Each setting uses 8,192 shots per
+pointer label. The vertical guide marks θ=π/2, where the analytic
+contrast vanishes. Table VII compares all four numerical-validation
+layers.
+
+\textbf{Table VI. Validation arms, accessible systems, and target
+predictions.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Arm}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Accessible systems}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Primary test}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Fixed AB / BA & E₂ or declared fragment & Matched fixed-order
+baseline \\
+Coherent control & T+E₂ & Joint-access Holevo contribution and Helstrom
+neutrality \\
+Dephased control & T+E₂ after D\_T & Removal of coherence-sensitive
+term \\
+Control discarded & E₂ only & Environment-only comparison \\
+Postselected control & Outcome Y and E₂ & Probability-weighted
+information budget \\
+\end{longtable}
+
+\section{X. Scope and limitations}\label{x.-scope-and-limitations}
+
+\begin{itemize}
+\item
+  The matched-family Holevo advantage is not claimed against the full
+  causally separable process cone.
+\item
+  Causal nonseparability does not imply environmental objectivity, and
+  objectivity is not a causal witness.
+\item
+  The inherited-witness theorem requires deterministic local recovery of
+  the certified base process.
+\item
+  The SBS diagnostics are finite local and correlation diagnostics, not
+  a global distance-to-SBS theorem.
+\item
+  The validation package contains analytic proofs, Qiskit and NumPy
+  gate-level statevector results, reduced-normal-form checks, and
+  finite-shot ideal-sampling outputs. These are computational validation
+  results, not physical-device measurements.
+\item
+  The access decomposition is defined relative to the declared
+  branch-basis dephasing and access structure.
+\item
+  The Helstrom-neutrality theorem is exact for the declared equal-prior
+  binary model and is not asserted for arbitrary tasks, priors,
+  channels, or dimensions.
+\end{itemize}
+
+\section{XI. Conclusion}\label{xi.-conclusion}
+
+Environmental objectivity and causal nonseparability are independent.
+When record-generating operations are coherently ordered, branchwise
+pointer compatibility determines deterministic preservation, while the
+control provides a bounded information resource. The resource can
+increase joint Holevo information without improving equal-prior binary
+discrimination or fragment-only redundancy. Postselection is probability
+constrained, record replication does not make the bonus extensive, and
+deterministic local record outputs preserve the causal certificate
+through witness pullback.
+
+The comparison with communication-power results further shows why
+coherent order should be assessed task by task: an advantage in one-shot
+message transmission does not imply an advantage in equal-prior
+environmental-record discrimination. The framework therefore gives
+theory and experiment a common checklist for separating redundant
+environmental records, control-assisted information, postselection
+effects, decision performance, and independent causal certification in
+controlled-order record circuits.
+
+\section{Data and code availability}\label{data-and-code-availability}
+
+All deterministic scripts, prediction tables, exact matrix outputs,
+finite-shot computational counts, bootstrap intervals, local simulator
+outputs, theorem certificates, reports, and checksums assembled for this
+submission are included in the accompanying reproducibility package. The
+package includes machine-readable numerical validation outputs and
+simulation-generated finite-shot data but no measurements from a
+physical quantum processor. The final public archive will be cited as:
+S. Muniz, Causal Nonseparability and Environmental Objectivity
+Reproducibility Package, Version 5.0, Zenodo (2026), DOI:
+10.5281/zenodo.XXXXXXX {[}PLACEHOLDER - replace with minted DOI before
+submission{]}. See Ref. {[}26{]}.
+
+\section{Author contributions, declarations, and AI
+assistance}\label{author-contributions-declarations-and-ai-assistance}
+
+S.M. is the sole author, conceived and directed the research, and takes
+responsibility for the manuscript and its claims. The author is
+affiliated with Dr. Ware Technology Services and declares no competing
+interests. A large language model assisted with drafting, editing,
+bibliographic organization, numerical code, symbolic checks, and
+critical review. The author is responsible for verification of all
+mathematical statements, calculations, references, and final text. No AI
+system is an author.
+
+\section{Appendix A. Matrix route for the neutrality
+theorem}\label{appendix-a.-matrix-route-for-the-neutrality-theorem}
+
+The original symbolic script generates the physical-basis operators from
+the real-rotation circuit and verifies p\_coh(λ)=λ²p\_AB(λ)=λ²p\_BA(λ).
+Version 4 independently reconstructs the four-qubit gates with NumPy,
+traces to E₂ or T+E₂, and exports the physical-basis entries of Δ\_AB,
+Δ\_BA, and Δ\_coh at all 51 grid points in
+v4\_gate\_level\_validation.csv. The separate reduced-normal-form file
+remains a consequence-level check rather than a circuit-level
+derivation.
+
+\section{Appendix B. Referee reproducibility
+checklist}\label{appendix-b.-referee-reproducibility-checklist}
+
+\textbf{Table VIII. Claim-to-artifact audit map.}
+
+Table VIII maps each principal claim to its required reproducibility
+artifact and verification target.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Claim}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Required artifact}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Verification target}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Access decomposition & Symbolic notebook or script & Eq. (3) and
+marginal-invariance check \\
+Postselection budget & Analytic derivation and sampled instruments &
+Eqs. (7)-(9) \\
+Helstrom neutrality & Symbolic determinant certificate and statevector
+grid & Eqs. (10)-(13) \\
+Matched Holevo bonus & Parameter file and machine-readable output &
+0.0839771759-bit difference \\
+Many-fragment result & Subset-enumeration script and tables & N=2,4,6,8
+conclusions \\
+Witness pullback & Process-space assumptions and witness certificate &
+Eqs. (14)-(17) \\
+Four-qubit route & OpenQASM and tomography scripts & Declared simulator
+predictions \\
+Gate-level circuit neutrality & gate\_level\_validation\_v4.py;
+v4\_gate\_level\_validation.csv & Physical-basis matrices, spectra, and
+Eq. (13) over 51 settings \\
+Reduced spectral normal forms & classical\_validation\_v3.py;
+v3\_exact\_matrix\_validation.csv & Normal-form eigenvalues and trace
+norms over 51 settings \\
+Finite-shot ideal sampling & v4\_finite\_shot\_validation.csv & Counts,
+bias, error, and simultaneous intervals over 99 settings \\
+Validation summary and integrity & v4\_validation\_summary.json;
+v4\_checksums.sha256 & Seed, versions, aggregate metrics, and SHA-256
+hashes \\
+Version 5 manuscript validation & Submission\_Paper\_PRXQ\_V5.docx;
+v4\_checksums.sha256 & Gate definitions, tensor ordering,
+cross-references, and validated numerical summaries \\
+\end{longtable}
+
+\section{References}\label{references}
+
+{[}1{]} W. H. Zurek, Decoherence, einselection, and the quantum origins
+of the classical, Rev. Mod. Phys. 75, 715 (2003).
+
+{[}2{]} H. Ollivier, D. Poulin, and W. H. Zurek, Objective Properties
+from Subjective Quantum States: Environment as a Witness, Phys. Rev.
+Lett. 93, 220401 (2004).
+
+{[}3{]} R. Blume-Kohout and W. H. Zurek, Quantum Darwinism:
+Entanglement, branches, and the emergent classicality of redundantly
+stored quantum information, Phys. Rev. A 73, 062310 (2006).
+
+{[}4{]} W. H. Zurek, Quantum Darwinism, Nat. Phys. 5, 181 (2009).
+
+{[}5{]} C. J. Riedel and W. H. Zurek, Quantum Darwinism in an Everyday
+Environment, Phys. Rev. Lett. 105, 020404 (2010).
+
+{[}6{]} J. K. Korbicz, P. Horodecki, and R. Horodecki, Objectivity in a
+Noisy Photonic Environment through Quantum State Information
+Broadcasting, Phys. Rev. Lett. 112, 120402 (2014).
+
+{[}7{]} R. Horodecki, J. K. Korbicz, and P. Horodecki, Quantum origins
+of objectivity, Phys. Rev. A 91, 032122 (2015).
+
+{[}8{]} J. K. Korbicz, Roads to objectivity: Quantum Darwinism, spectrum
+broadcast structures, and strong quantum Darwinism, Quantum 5, 571
+(2021).
+
+{[}9{]} O. Oreshkov, F. Costa, and Č. Brukner, Quantum correlations with
+no causal order, Nat. Commun. 3, 1092 (2012).
+
+{[}10{]} M. Araújo et al., Witnessing causal nonseparability, New J.
+Phys. 17, 102001 (2015).
+
+{[}11{]} C. Branciard, Witnesses of causal nonseparability: an
+introduction and a few case studies, Sci. Rep. 6, 26018 (2016).
+
+{[}12{]} J. Wechs, A. A. Abbott, and C. Branciard, Multipartite causal
+(non)separability, New J. Phys. 21, 013027 (2019).
+
+{[}13{]} E. Castro-Ruiz, F. Giacomini, and Č. Brukner, Dynamics of
+quantum causal structures, Phys. Rev. X 8, 011047 (2018).
+
+{[}14{]} S. Campbell et al., Collisional unfolding of quantum Darwinism,
+Phys. Rev. A 99, 042103 (2019).
+
+{[}15{]} M. Antesberger et al., Higher-Order Process Matrix Tomography
+of a Passively-Stable Quantum Switch, PRX Quantum 5, 010325 (2024).
+
+{[}16{]} M. M. Taddei, R. V. Nery, and L. Aolita, Quantum superpositions
+of causal orders as an operational resource, Phys. Rev. Research 1,
+033174 (2019).
+
+{[}17{]} E. Doucet and S. Deffner, Classifying Two-Body Hamiltonians for
+Quantum Darwinism, Phys. Rev. X 14, 041064 (2024).
+
+{[}18{]} D. A. Chisholm, G. M. Palma, and L. Innocenti, Emergence of
+quantum Darwinism and pointer states for noncommuting evolutions, APS
+Open Science 1, 000024 (2026).
+
+{[}19{]} G. Chiribella, G. M. D\textquotesingle Ariano, P. Perinotti,
+and B. Valiron, Quantum computations without definite causal structure,
+Phys. Rev. A 88, 022318 (2013). DOI: 10.1103/PhysRevA.88.022318.
+
+{[}20{]} T. P. Le and A. Olaya-Castro, Strong Quantum Darwinism and
+Strong Independence are Equivalent to Spectrum Broadcast Structure,
+Phys. Rev. Lett. 122, 010403 (2019). DOI:
+10.1103/PhysRevLett.122.010403.
+
+{[}21{]} L. A. Rozema, T. Strömberg, H. Cao, Y. Guo, B.-H. Liu, and P.
+Walther, Experimental aspects of indefinite causal order in quantum
+mechanics, Nat. Rev. Phys. 6, 483-499 (2024). DOI:
+10.1038/s42254-024-00739-8.
+
+{[}22{]} X. Zhao, B. Zhao, C. Branciard, and G. Chiribella, The
+communication power of indefinite causal order, arXiv:2510.08507v2
+(2026). DOI: 10.48550/arXiv.2510.08507.
+
+{[}23{]} C. M. D. Richter, M. Antesberger, H. Cao, P. Walther, and L. A.
+Rozema, Toward an Experimental Device-Independent Verification of
+Indefinite Causal Order, PRX Quantum 7, 010354 (2026). DOI:
+10.1103/5t2y-ddmt.
+
+{[}24{]} Z. Zhu et al., Observation of quantum Darwinism and the origin
+of classicality with superconducting circuits, Sci. Adv. 11, eadx6857
+(2025). DOI: 10.1126/sciadv.adx6857.
+
+{[}25{]} A. Steffinlongo and H. Dourdent, Simulating Noncausality with
+Quantum Control of Causal Orders, Phys. Rev. Research 8, 013127 (2026).
+DOI: 10.1103/9jss-yf1c.
+
+{[}26{]} S. Muniz, Causal Nonseparability and Environmental Objectivity
+Reproducibility Package, Version 5.0, Zenodo (2026), DOI:
+10.5281/zenodo.XXXXXXX {[}PLACEHOLDER{]}.
+
+\end{document}

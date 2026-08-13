@@ -1,0 +1,18 @@
+{
+  "seed": 20260812,
+  "python": "3.12.9",
+  "numpy": "1.26.4",
+  "pandas": "2.2.2",
+  "exact_grid_points": 51,
+  "finite_shot_settings": 99,
+  "shots_per_label_per_setting": 8192,
+  "bootstrap_replicates": 500,
+  "max_exact_formula_error": 0.0,
+  "max_exact_coherent_minus_best_abs": 0.0,
+  "max_finite_shot_abs_error": 0.011366597314485194,
+  "mean_finite_shot_abs_error": 0.0027038556713259512,
+  "finite_shot_ci95_coverage": 0.898989898989899,
+  "scope": "Classical matrix and finite-shot Monte Carlo validation; no physical quantum processor was used.",
+  "v3_exact_matrix_validation.csv_sha256": "869c0adc5573671c94529cf78be3ba73d8da46b157b2011b2e4b94edb973f4b8",
+  "v3_finite_shot_validation.csv_sha256": "c5591764dce93eb6379ffa6ee77e2f4c6cfb973d75ddf7c322b1b9b81226cab3"
+}

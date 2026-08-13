@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the archived release."
+title: "Causal Nonseparability and Environmental Objectivity: Reproducibility Package"
+version: "1.0.0"5
+license: MIT
+doi: "10.5281/zenodo.XXXXXXX"
+authors:
+  - family-names: "Muniz"
+    given-names: "Scott"
+    email: "scott@drware.com"
+date-released: "2026-08-12"
+type: software
