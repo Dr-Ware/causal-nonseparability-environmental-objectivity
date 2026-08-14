@@ -4,7 +4,7 @@ Reproducibility repository for the manuscript **Causal Nonseparability and Envir
 
 ## Release status
 
-This repository is prepared for the initial archival release `v1.0.0`. The manuscript still contains a Zenodo DOI placeholder. After Zenodo creates the DOI, update the manuscript, README, CITATION.cff, and `.zenodo.json`, then create a DOI-updated release if desired.
+This repository is prepared for the initial archival release `v1.0.0`. This repository is publicly archived through GitHub releases and Zenodo.
 
 ## Repository map
 
