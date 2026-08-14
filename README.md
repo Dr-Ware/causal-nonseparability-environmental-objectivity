@@ -42,7 +42,7 @@ These are computational validation results, not physical-device measurements.
 
 ## Citation
 
-Use `CITATION.cff`. Replace `10.5281/zenodo.XXXXXXX` after Zenodo mints the release DOI.
+Use `CITATION.cff`to cite this repository. The archived release is available at DOI: `10.5281/zenodo.21933737`.
 
 ## License
 
