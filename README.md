@@ -48,7 +48,7 @@ These are computational validation results, not physical-device measurements.
 
 ## Citation
 
-Use `CITATION.cff`to cite this repository. The archived release is available at DOI: `10.5281/zenodo.21933737`.
+Use `CITATION.cff`to cite this repository. The archived release is available at DOI: `10.5281/zenodo.21936044`.
 
 ## License
 
@@ -58,7 +58,7 @@ The Python software in this repository is made available under the MIT License. 
 
 - GitHub repository: https://github.com/Dr-Ware/causal-nonseparability-environmental-objectivity
 - Zenodo record: https://zenodo.org/records/21933737
-- DOI: 10.5281/zenodo.21933737
+- DOI: 10.5281/zenodo.21936044
 - Manuscript version supported: Version 6
 - Archive version: v1.0.2 or current release tag used for the DOI
 
