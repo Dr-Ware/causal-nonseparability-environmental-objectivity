@@ -1,11 +1,30 @@
 {
   "title": "Causal Nonseparability and Environmental Objectivity: Reproducibility Package",
   "upload_type": "software",
-  "description": "Analytic, gate-level, reduced-normal-form, and finite-shot computational validation artifacts for the associated PRX Quantum manuscript.",
-  "creators": [{"name": "Muniz, Scott", "affiliation": "Dr. Ware Technology Services"}],
-  "version": "1.0.0",
-  "license": "mit",
-  "keywords": ["quantum Darwinism", "causal nonseparability", "quantum switch", "Helstrom discrimination", "reproducibility"],
-  "related_identifiers": [],
-  "notes": "The archived validation outputs are computational results and do not contain physical quantum-processor measurements."
+  "description": "Reproducibility package supporting the manuscript Causal Nonseparability and Environmental Objectivity: Independence, Control-Assisted Records, and Quantum-Switch Benchmarks. The package contains analytic certificates, statevector validation, reduced-normal-form checks, finite-shot ideal-sampling outputs, claim-to-artifact traceability, and checksum manifests. The manuscript establishes logical independence between environmental objectivity and causal nonseparability, and separates redundant environmental records from control-assisted joint-access information.",
+  "creators": [
+    {
+      "name": "Muniz, Scott",
+      "affiliation": "Dr. Ware Technology Services"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "quantum darwinism",
+    "environmental objectivity",
+    "causal nonseparability",
+    "quantum switch",
+    "indefinite causal order",
+    "process matrices",
+    "Holevo information",
+    "Helstrom discrimination",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Dr-Ware/causal-nonseparability-environmental-objectivity",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
 }
